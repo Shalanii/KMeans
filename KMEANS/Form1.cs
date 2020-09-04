@@ -24,53 +24,11 @@ namespace KMEANS
         int[] pointCluster = new int[50];
         int len;
 
-        private void drawPointDarkBlue(float a, float b)
+        private void drawPoint(System.Drawing.Pen color,float a,float b)
         {
             Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.DarkBlue, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.DarkBlue, a + 3, panel.Height - b, a - 3, panel.Height - b);
-        }
-
-        private void drawPointLightBlue(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.LightBlue, a,panel.Height-b-3,a,panel.Height-b+3);
-            g.DrawLine(Pens.LightBlue, a+3,panel.Height-b,a-3,panel.Height-b);
-        }
-
-        private void drawPointRed(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.Red, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.Red, a + 3, panel.Height - b, a - 3, panel.Height - b);
-        }
-
-        private void drawPointYellow(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.Yellow, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.Yellow, a + 3, panel.Height - b, a - 3, panel.Height - b);
-        }
-
-        private void drawPointGreen(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.LightGreen, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.LightGreen, a + 3, panel.Height - b, a - 3, panel.Height - b);
-        }
-
-        private void drawPointViolet(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.Violet, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.Violet, a + 3, panel.Height - b, a - 3, panel.Height - b);
-        }
-
-        private void drawPointPink(float a, float b)
-        {
-            Graphics g = panel.CreateGraphics();
-            g.DrawLine(Pens.HotPink, a, panel.Height - b - 3, a, panel.Height - b + 3);
-            g.DrawLine(Pens.HotPink, a + 3, panel.Height - b, a - 3, panel.Height - b);
+            g.DrawLine(color, a, panel.Height - b - 3, a, panel.Height - b + 3);
+            g.DrawLine(color, a + 3, panel.Height - b, a - 3, panel.Height - b);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -108,14 +66,14 @@ namespace KMEANS
 
             for (i = 0; i < len; i++)
             {
-                drawPointLightBlue(xx[i], yy[i]);
+                drawPoint(Pens.White,xx[i], yy[i]);
             }
 
             for (i = 0; i < centros; i++)
             {
                 cen[i, 0] = xx[i];
                 cen[i, 1] = yy[i];
-                drawPointRed(cen[i,0], cen[i,1]);
+                drawPoint(Pens.Red,cen[i,0], cen[i,1]);
             }
         }
 
@@ -171,14 +129,16 @@ namespace KMEANS
                     newcen[a, 0] = newcen[a, 0] + xx[i];
                     newcen[a, 1] = newcen[a, 1] + yy[i];
                     c[a]=c[a]+1;
-                    int b = a % 5;
+                    int b = a % 7;
                     switch (b)
                     {
-                        case 0: drawPointYellow(xx[i], yy[i]);  break;
-                        case 1: drawPointGreen(xx[i], yy[i]); break;
-                        case 2: drawPointPink(xx[i], yy[i]); break;
-                        case 3: drawPointRed(xx[i], yy[i]); break;
-                        case 4: drawPointLightBlue(xx[i], yy[i]); break;
+                        case 0: drawPoint(Pens.Yellow, xx[i], yy[i]);  break;
+                        case 1: drawPoint(Pens.Green, xx[i], yy[i]); break;
+                        case 2: drawPoint(Pens.HotPink, xx[i], yy[i]); break;
+                        case 3: drawPoint(Pens.DarkBlue, xx[i], yy[i]); break;
+                        case 4: drawPoint(Pens.Gray, xx[i], yy[i]); break;
+                        case 5: drawPoint(Pens.DarkRed, xx[i], yy[i]); break;
+                        case 6: drawPoint(Pens.Purple, xx[i], yy[i]); break;
                     }
                 }
 
